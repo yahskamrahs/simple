@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <title>All in one Calculator</title>
+    
+    <!-- Bootstrap core CSS -->
+   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="../assets/css/fontaweso.css">
+    <link rel="stylesheet" href="../assets/css/main.css"> 
+    <link rel="stylesheet" href="../assets/css/owl.css"> 
+    <link rel="stylesheet" href="../assets/css/lightbox.css">
+    <link rel="stylesheet" href="../assets/css/header.css">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neon Dark Web Calculator</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #0A092F;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120vh;
+    margin: 0;
+  }
+
+  .calculator {
+    background-color: #111;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    width: 350px;
+  }
+
+  .button-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .button {
+      background-color: #1c1c1c;
+      color: #fff;
+      border: none;
+      padding: 15px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+      transition: background-color 0.2s;
+      outline: none;
+    }
+
+  .button.operator {
+    background-color: #1c1c1c;
+  }
+
+  .button:active {
+    transform: scale(0.95);
+  }
+
+  .display {
+      background-color: #1c1c1c;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+  #display {
+   width: 100%;
+      padding: 10px;
+      font-size: 18px;
+      background-color: transparent;
+      border: none;
+      color: #fff;
+      text-align: right;
+  }
+
+  .developer{
+    margin-top: 10px;
+    font-size: 12px;
+    color: #888;
+  }
+  .hisbutton{
+      background-color: #1c1c1c;
+      color: #fff;
+      border: none;
+      padding: 15px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      
+      transition: background-color 0.2s;
+      outline: none;
+     }
+    
+   .emoji-image {
+    width: 13px; /* Adjust this value to your preferred width */
+    height: 13px; /* Maintain the aspect ratio */
+    vertical-align: middle;
+  }
+
+</style>
+
+
+<!-- ################   HTML   Section   Body       #####################  -->  
+
+<!--header-->
+  <header class="main-header clearfix" role="header">
+    <div class="logo">
+      <a href="#"><em>Simple</em> Math</a>
+    </div>
+    <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
+    <nav id="menu" class="main-nav" role="navigation">
+      <ul class="main-menu">
+        <li><a href="../index.html">Go To Home Page</a></li>
+   <!--     <li><a href="#section2">Tools</a>
+        <li><a href="#section6">About us</a>   -->
+    </nav>
+  </header>
+
+</head>
+<body>
+<div class="calculator">
+  <div class="display">
+      <input type="text" id="display" readonly>
+    </div>
+  <div class="button-grid">
+
+    <button class="button operator" onclick="clearDisplay()">C</button>
+    <button class="hisbutton" onclick="viewHistory()">View History</button>
+    <button class="button" onclick="backspace()">&#9003;</button>
+    <button class="button operator" onclick="appendValue('/')">/</button>
+    
+    <button class="button" onclick="appendValue('7')">7</button>
+    <button class="button" onclick="appendValue('8')">8</button>
+    <button class="button" onclick="appendValue('9')">9</button>
+    <button class="button operator" onclick="appendValue('+')">+</button>
+
+    
+    <button class="button" onclick="appendValue('4')">4</button>
+    <button class="button" onclick="appendValue('5')">5</button>
+    <button class="button" onclick="appendValue('6')">6</button>
+    <button class="button operator" onclick="appendValue('-')">-</button>
+
+    
+    
+    <button class="button" onclick="appendValue('1')">1</button>
+    <button class="button" onclick="appendValue('2')">2</button>
+    <button class="button" onclick="appendValue('3')">3</button>
+    <button class="button operator" onclick="appendValue('*')">*</button>
+    
+
+    
+    <button class="button" onclick="appendValue('00')">00</button> 
+    <button class="button" onclick="appendValue('0')">0</button>
+    <button class="button" onclick="appendValue('.')">.</button>
+    <button class="button operator" onclick="calculate()">=</button>
+
+
+  </div>
+  <div class="developer">Designed By Akshay Sharma</div>
+  <div class="developer">With Peace <img src="white_bird.png" class="emoji-image"> 
+</div>
+
+
+<!-- ################   Javascript Function Section  #####################  --> 
+
+
+
+<script>
+
+
+       let calculationHistory = [];
+  
+   function appendValue(value) {
+            document.getElementById("display").value += value;
+        }
+
+  
+ function backspace() {
+      display.value = display.value.slice(0, -1);
+    }
+
+function clearDisplay() {
+            document.getElementById("display").value = "";
+        }
+
+   function calculate() {
+            let expression = document.getElementById("display").value;
+          try{
+            let result = eval(expression);
+            document.getElementById("display").value = result;
+            calculationHistory.push(expression + " = " + result);
+            } catch (error) {
+              display.value = 'Expression Error';
+             }
+            }
+     function viewHistory() {
+            localStorage.setItem("calculationHistory", JSON.stringify(calculationHistory));
+            window.location.href = "history/history1.html";
+        } 
+
+       document.addEventListener('keydown', (event) => {
+    const key = event.key;
+    if (/^[0-9]$/.test(key)) {
+      appendValue(key);
+    } else if (key === '.') {
+      appendValue('.');
+    } else if (key === 'Backspace') {
+      backspace();
+    }  else if (key === '/') {
+      appendValue('/');
+    }  else if (key === '*') {
+      appendValue('*');
+    } else if (key === '-') {
+      appendValue('-');
+    }  else if (key === '+') {
+      appendValue('+');
+    }  else if (key === 'c') {
+      clearDisplay();
+    }   else if (key === 'C') {
+      clearDisplay();
+    }   else if (key === 'Enter') {
+      calculate();
+    }
+  });
+
+
+</script>
+</body>
+</html>
